@@ -1,0 +1,39 @@
+{% extends 'layouts/base2.html' %}
+{% block content %}
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Tasks</title>
+    </head>
+    <body>
+        <h1>Tasks</h1>
+        <div>
+            {% for task in tasks %}
+            <article>
+                <h2>{{task.title}}</h2>
+                {% if task.done == True %}
+                    <p>✅ Tarea realizada</p>
+                {% else %}
+                    <p>🕑Tarea pendiente</p>
+                {% endif %}
+                {% if task.description == '' %}
+                    <p>Without description</p>
+                {% else %}
+                    <p>{{task.description}}</p>
+                {% endif %}
+                <h3>task to {{task.project.name}}</h3>
+                <button>
+                    Delete
+                </button>
+                <button>
+                    ✅ Done
+                </button>
+            </article>
+            {% endfor %}
+        </div>
+    </body>
+    </html>
+{% endblock %}
