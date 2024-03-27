@@ -1,9 +1,27 @@
+{% load static %}
 
-    <ul>
-        <li><a href="../">Home</a></li>
-        <li><a href="../createTask/">Create tasks</a></li>
-    </ul>
-    <h2>You're a especial user</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Django Projects</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <nav class="navbar container">
+        <ul>
+            <li><a href="{% url 'index' %}">Home</a></li>
+            <li><a href="{% url 'createTask' %}">Create tasks</a></li>
+        </ul>
+    </nav>
+    <main class="container">
+        <h2>You're a especial user</h2>
+        {% block content%}
+        {% endblock %}
+    </main>
+    
+</body>
+   
 
-{% block content%}
-{% endblock %}

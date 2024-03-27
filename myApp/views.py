@@ -1,4 +1,4 @@
-from django.shortcuts import get_object_or_404, render, redirect
+from django.shortcuts import get_object_or_404, render, redirect, get_list_or_404
 from django.http import HttpResponse
 from myApp.models import Project, Task
 from myApp.forms import createNewTask, createNewProject
@@ -35,14 +35,15 @@ def tasks(request):
     })
 
 def createTask(request):
+        form = createNewTask()
         if request.method == 'GET':
             # show interface
             return render(request, "Tasks/create_task.html", {
-                'form' : createNewTask()
+                'form' : form
             })
         else:
             Task.objects.create(title = request.POST['title'], description = request.POST['description'], project_id = request.POST['project_id'])
-            return redirect('../tasks')
+            return redirect('tasks')
 
 def createProject(request):
     if request.method == 'GET':
@@ -52,4 +53,14 @@ def createProject(request):
     else:
         print(request.POST)
         Project.objects.create(name = request.POST["name"])
-        return redirect('../projects')
+        return redirect('projects')
+
+def project_detail(request, id):
+    project = get_object_or_404(Project, id=id)
+    tasks = Task.objects.filter(project_id = id)
+    print(tasks)
+    print(project)
+    return render(request, 'Projects/detail.html',{
+        'project': project,
+        'tasks' : tasks
+    })
