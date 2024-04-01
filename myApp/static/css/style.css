@@ -3,6 +3,7 @@ body{
     color: whitesmoke;
 }
 
+
 .navbar{
     background-color: #404040;
 }
@@ -30,7 +31,7 @@ body{
 .container{
     max-width: 1200px;
     margin: auto;
-    padding:  5px 10px;
+    padding:  10px 40px;
 }
 
 .card{
@@ -41,7 +42,8 @@ body{
 }
 
 .input{
-    background-color: bisque;
+    background-color: lightgrey;
     padding: 10px;
     text-align: center;
+    display: block;
 }
